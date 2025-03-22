@@ -1,1 +1,9 @@
+# Git
+.git
+
+# Compile directory
 /target
+
+# IDE
+.vscode
+.idea

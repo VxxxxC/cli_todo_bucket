@@ -28,9 +28,9 @@ pub struct AddCommand {
 
 #[derive(Debug, Subcommand)]
 pub enum AddSubcommand {
-    /// Add todo item
+    #[clap(about="Add todo item")]
     Todo(Todo),
-    /// Add reminder item
+    #[clap(about="Add reminder item")]
     Reminder(Reminder),
 }
 
@@ -43,9 +43,9 @@ pub struct UpdateCommand {
 
 #[derive(Debug, Subcommand)]
 pub enum UpdateSubcommand {
-    /// Update todo item
+    #[clap(about="Update todo item")]
     Todo(Todo),
-    /// Update reminder item
+    #[clap(about="Update reminder item")]
     Reminder(Reminder),
 }
 
@@ -58,9 +58,9 @@ pub struct DeleteCommand {
 
 #[derive(Debug, Subcommand)]
 pub enum DeleteSubcommand {
-    /// Delete todo item
+    #[clap(about="Delete todo item")]
     Todo(Todo),
-    /// Delete reminder item
+    #[clap(about="Delete reminder item")]
     Reminder(Reminder),
 }
 

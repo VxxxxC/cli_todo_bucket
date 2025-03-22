@@ -1,4 +1,6 @@
 mod cli;
+mod todo;
+mod reminder;
 
 use clap::Parser;
 use cli::CliArgs;

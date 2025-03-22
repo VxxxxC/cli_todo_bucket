@@ -11,11 +11,13 @@ pub struct CliArgs {
 
 #[derive(Debug, Subcommand)]
 pub enum InputType {
-    /// Add new item
+    #[clap(about="Add new item")]
     Add(AddCommand),
-    /// Update the list
+    #[clap(about="Update the list")]
     Update(UpdateCommand),
-    /// Check the current list
+    #[clap(about="Delete item")]
+    Delete(DeleteCommand),
+    #[clap(about="Check current list")]
     Check,
 }
 

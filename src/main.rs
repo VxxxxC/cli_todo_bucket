@@ -3,12 +3,14 @@ mod todo;
 mod reminder;
 
 use std::time::SystemTime;
+use actix_web::web::Json;
 use chrono::Utc;
 use clap::Parser;
 use cli::{CliArgs, InputType, AddCommand, AddSubcommand, UpdateCommand, UpdateSubcommand, DeleteCommand, DeleteSubcommand};
-use crate::todo::Todo;
+use crate::todo::*;
 
-fn main() {
+#[actix_web::main]
+async fn main() {
     let args: CliArgs = CliArgs::parse();
     println!("{:?}", args.input_type);
     println!("Data created at {}", Utc::now());
@@ -21,7 +23,7 @@ fn main() {
     
     match &input {
         input if input[0] == "add" => {
-            if &input[1] == "todo" { println!("you are adding todo!") } 
+            if &input[1] == "todo" { add_todo_api(input[2].to_string()).await; }
             if &input[1] == "reminder" { println!("you are adding reminder!") }
         }
         input if input[0] == "update" => {

@@ -11,11 +11,12 @@ pub struct Todo {
 
 impl Todo {
   pub fn add_todo(todo: Todo) -> Result<Todo, Error>{
+    println!("todo item : {}", todo.item);
     Ok(todo)
   }
 }
 
-#[post("/api/add_todo")] // FIXME:
+// FIXME:
 pub async fn add_todo_api(item: String) -> HttpResponse {
     let input = Todo {
         item

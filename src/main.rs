@@ -12,14 +12,14 @@ use crate::todo::*;
 #[actix_web::main]
 async fn main() {
     let args: CliArgs = CliArgs::parse();
-    println!("{:?}", args.input_type);
-    println!("Data created at {}", Utc::now());
+    // println!("{:?}", args.input_type);
+    // println!("Data created at {}", Utc::now());
     
     // Check the args input here
     let mut input_args = std::env::args();
     input_args.next();
     let input = input_args.map(|x|x).collect::<Vec<_>>();
-    println!("args:{:?}",&input);
+    // println!("args:{:?}",&input);
     
     match &input {
         input if input[0] == "add" => {

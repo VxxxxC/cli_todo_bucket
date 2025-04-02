@@ -1,7 +1,5 @@
 use std::io::Error;
-
-use actix_web::{HttpResponse, post, web::Json};
-use clap::{Args, Parser, Subcommand};
+use clap::Args;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Args, Serialize, Deserialize)]
@@ -17,7 +15,11 @@ impl Todo {
 }
 
 // FIXME:
-pub async fn add_todo_api(item: String) -> HttpResponse {
+pub async fn add_todo_api(url: String, item: String) {
+
+    let client = reqwest::Client::new();
+    let post = url + "/post";
+
     let input = Todo {
         item
     };
@@ -27,8 +29,11 @@ pub async fn add_todo_api(item: String) -> HttpResponse {
             let add_to_list: Todo = Todo {
                 item: todo.item
             };
-            HttpResponse::Ok().body(format!("Added todo: {}", add_to_list.item))
+
+            let res = client.post(post).json(&add_to_list).send().await;
+            println!("res : {:?}", res);
+
         }
-        Err(_) => HttpResponse::BadRequest().body("Failed to add todo item"),
+        Err(_) => println!("Failed to add todo item"),
     }
 }

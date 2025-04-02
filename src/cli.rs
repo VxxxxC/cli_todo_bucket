@@ -13,14 +13,31 @@ pub struct CliArgs {
 
 #[derive(Debug, Subcommand)]
 pub enum InputType {
+    #[clap(about="Get the item")]
+    Get(GetCommand),
     #[clap(about="Add new item")]
     Add(AddCommand),
     #[clap(about="Update the list")]
     Update(UpdateCommand),
     #[clap(about="Delete item")]
     Delete(DeleteCommand),
-    #[clap(about="Check current list")]
+    #[clap(about="Check all the items in the list")]
     Check,
+}
+
+// GET
+#[derive(Debug, Args)]
+pub struct GetCommand {
+    #[clap(subcommand)]
+    pub get: GetSubcommand,
+}
+
+#[derive(Debug, Subcommand)]
+pub enum GetSubcommand {
+    #[clap(about="Get todo item")]
+    Todo(Todo),
+    #[clap(about="Get reminder item")]
+    Reminder(Reminder),
 }
 
 // ADD

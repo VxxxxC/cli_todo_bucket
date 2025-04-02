@@ -14,11 +14,22 @@ impl Todo {
   }
 }
 
-// FIXME:
+pub async fn get_todo_api(url: String) {
+    let get = url + "/todo";
+
+    let body = reqwest::get(get)
+        .await.unwrap()
+        .text()
+        .await.unwrap();
+
+    println!("get todo : {}", body);
+
+}
+
 pub async fn add_todo_api(url: String, item: String) {
 
     let client = reqwest::Client::new();
-    let post = url + "/post";
+    let post = url + "api/todo";
 
     let input = Todo {
         item
@@ -31,9 +42,20 @@ pub async fn add_todo_api(url: String, item: String) {
             };
 
             let res = client.post(post).json(&add_to_list).send().await;
-            println!("res : {:?}", res);
+            println!("add todo : {:?}", res);
 
         }
         Err(_) => println!("Failed to add todo item"),
     }
+}
+
+pub async fn list_todo_api(url: String) {
+    let get = url + "api/health";
+
+    let body: String = reqwest::get(get)
+        .await.unwrap().text().await.unwrap();
+        
+
+    println!("list all todo : {}", body);
+
 }

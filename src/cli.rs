@@ -5,8 +5,6 @@ use crate::reminder::Reminder;
 #[derive(Debug, Parser)]
 #[clap(author, version, about)]
 pub struct CliArgs {
-    pub url: String,
-    
     #[clap(subcommand)]
     pub input_type: InputType,
 }
@@ -24,6 +22,12 @@ pub enum InputType {
     #[clap(about="Check all the items in the list")]
     Check,
 }
+
+// LIST
+// #[derive(Debug, Args)]
+// pub struct ListCommand {
+//     pub list,
+// }
 
 // GET
 #[derive(Debug, Args)]

@@ -1,4 +1,4 @@
-use clap::{Args, Parser, Subcommand};
+use clap::Args;
 
 #[derive(Debug, Args)]
 pub struct Reminder {

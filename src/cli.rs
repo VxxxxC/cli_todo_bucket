@@ -5,6 +5,8 @@ use crate::reminder::Reminder;
 #[derive(Debug, Parser)]
 #[clap(author, version, about)]
 pub struct CliArgs {
+    pub url: String,
+    
     #[clap(subcommand)]
     pub input_type: InputType,
 }
